@@ -24,23 +24,27 @@ Feature: display list of movies filtered by MPAA rating
       # enter step(s) to check the 'PG' and 'R' checkboxes
     When I check the following ratings: PG, R           # features/step_definitions/movie_steps.rb:29
       # enter step(s) to uncheck all other checkboxes
-    When I uncheck the following ratings: G, PG-13      # features/step_definitions/movie_steps.rb:29
+    And I uncheck the following ratings: G, PG-13       # features/step_definitions/movie_steps.rb:29
       # enter step to "submit" the search form on the homepage
-    When I press "ratings_submit"                       # features/step_definitions/web_steps.rb:52
+    And I press "ratings_submit"                        # features/step_definitions/web_steps.rb:52
       # enter step(s) to ensure that PG and R movies are visible
     Then I should see "The Incredibles"                 # features/step_definitions/web_steps.rb:105
-    Then I should see "Raiders of the Lost Ark"         # features/step_definitions/web_steps.rb:105
-    Then I should see "The Terminator"                  # features/step_definitions/web_steps.rb:105
-    Then I should see "When Harry Met Sally"            # features/step_definitions/web_steps.rb:105
-    Then I should see "Amelie"                          # features/step_definitions/web_steps.rb:105
+    And I should see "Raiders of the Lost Ark"          # features/step_definitions/web_steps.rb:105
+    And I should see "The Terminator"                   # features/step_definitions/web_steps.rb:105
+    And I should see "When Harry Met Sally"             # features/step_definitions/web_steps.rb:105
+    And I should see "Amelie"                           # features/step_definitions/web_steps.rb:105
       # enter step(s) to ensure that other movies are not visible
-    Then I should not see "Aladdin"                     # features/step_definitions/web_steps.rb:123
-    Then I should not see "The Help"                    # features/step_definitions/web_steps.rb:123
-    Then I should not see "Chocolat"                    # features/step_definitions/web_steps.rb:123
-    Then I should not see "2001: A Space Odyssey"       # features/step_definitions/web_steps.rb:123
-    Then I should not see "Chicken Run"                 # features/step_definitions/web_steps.rb:123
+    And I should not see "Aladdin"                      # features/step_definitions/web_steps.rb:123
+    And I should not see "The Help"                     # features/step_definitions/web_steps.rb:123
+    And I should not see "Chocolat"                     # features/step_definitions/web_steps.rb:123
+    And I should not see "2001: A Space Odyssey"        # features/step_definitions/web_steps.rb:123
+    And I should not see "Chicken Run"                  # features/step_definitions/web_steps.rb:123
 
-  Scenario: all ratings selected # features/filter_movie_list.feature:44
+  Scenario: all ratings selected                        # features/filter_movie_list.feature:44
+      # see assignment
+    When I check the following ratings: G, PG, PG-13, R # features/step_definitions/movie_steps.rb:29
+    And I press "ratings_submit"                        # features/step_definitions/web_steps.rb:52
+    Then I should see all the movies                    # features/step_definitions/movie_steps.rb:42
 
 Feature: display list of movies sorted by different criteria
   As an avid moviegoer
@@ -90,5 +94,5 @@ Feature: display list of movies sorted by different criteria
     Then I should see "The Incredibles" before "The Help"                      # features/step_definitions/movie_steps.rb:19
 
 4 scenarios (4 passed)
-45 steps (45 passed)
-0m0.368s
+48 steps (48 passed)
+0m0.339s

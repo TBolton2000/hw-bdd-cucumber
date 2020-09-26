@@ -41,5 +41,6 @@ end
 
 Then /I should see all the movies/ do
   # Make sure that all the movies in the app are visible in the table
-  fail "Unimplemented"
+  rowCount = page.body.scan(/(?=<tr>)/).count - 1
+  expect(rowCount).to eq Movie.count
 end
